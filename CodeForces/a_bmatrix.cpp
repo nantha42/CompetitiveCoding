@@ -20,9 +20,9 @@ public:
 					break;
 				}
 
-			for(int i=0,dx=0;i<n;i++,dx+=shift){
+			for(int i=0;i<n;i++){
 					for(int j=0;j<a;j++){
-							arr[i][(j+dx)%m]='1';						
+							arr[i][(j+i*shift)%m]='1';						
 					}
 				
 			}
