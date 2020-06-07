@@ -12,7 +12,7 @@ int main(){
 		cin>>t;
 		vector<int> arr(t);
 		for(int i=0;i<t;i++)
-			cin>>arr[i];
+			cin>>arr[i];6
 			
 		if(t&1){
 			cout<<-1<<endl;
@@ -20,7 +20,7 @@ int main(){
 		}
 		int counts[1025];
 		memset(counts,0,sizeof counts);
-		
+
 		for(int i=0;i<t-1;i++)
 			for(int j=i+1;j<t;j++)
 				counts[arr[i]^arr[j]]+=1;
