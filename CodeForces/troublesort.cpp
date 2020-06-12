@@ -53,7 +53,7 @@ bool space(vector<vector<int> > arr){
 
 
 int main(){
-	freopen("input.txt","r",stdin);
+	// freopen("input.txt","r",stdin);
 	int n;
 	cin>>n;
 	while(n--){
