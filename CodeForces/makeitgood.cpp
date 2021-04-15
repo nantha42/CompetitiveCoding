@@ -1,25 +1,66 @@
 #include<bits/stdc++.h>
 using namespace std;
-int remaining(vector<int>&arr){
-	int c=0;
-	for(int x:arr)
-		if(x>0)c++;
-	return c;
-}
-int main(){
-	// freopen("input.txt","r",stdin);
-	int t;
-	int x;
-	cin>>t;
-	while(t--){
-		cin>>x;
-		vector<int> arr(x);
-		for(int i=0;i<x;i++){
-			cin>>arr[i];
-		}
-		int p = x-1;
-		while(p>0 && arr[p-1]>=arr[p])p--;
-		while(p>0 && arr[p-1]<=arr[p])p--;
-		cout<<p<<endl;
+class Renderer{
+public:
+	int aa;
+	int bb;
+	Renderer(int a,int b){
+		aa = a;
+		bb = b;
 	}
+};
+
+class listboxItem{
+public:
+	Renderer *gRender;
+	void assignRender(Renderer* render){
+		gRender = render;
+	}
+};
+
+class listbox{
+public:
+	Renderer *grender;
+	vector<listboxItem*> items;
+	void assignRender(Renderer*  render){
+		grender = render;
+		for(auto *x:items){
+			x->assignRender(render);
+		}
+	}
+};
+
+class Game{
+public:	
+	listboxItem *item;
+	listbox* box;
+	vector<listbox*> listboxes;
+
+	Game(){
+		item = new listboxItem();
+		box = new listbox();
+		
+		box->items.push_back(item);
+		listboxes.push_back(box);
+		
+		cout<<"Box :"<<box<<endl;
+		cout<<"Box :"<<listboxes[0]<<endl;
+	}
+	void assignRender(Renderer* render){
+		cout<<"Ren: "<<render<<endl;
+		for(int i=0;i<listboxes.size();i++){
+			listboxes[i]->assignRender(render);
+		}
+		cout<<"Ren: "<<listboxes[0]->grender<<endl;
+	}
+};
+
+int main(){
+	Game g;
+	Renderer *ren = new Renderer(1,2);
+	cout<<"Box: "<<g.listboxes[0]<<endl;
+	cout<<"Ren: "<<ren<<endl;
+	g.assignRender(ren);
+	cout<<"Ren: "<<g.listboxes[0]->grender<<endl;
+
 }

@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 #define FOR(n) for(int i=0;i<n;++i)
 #define FOR1(n) for(int i=1;i<n;++i)
-#define rng(a,b) for(int i=a;i<b;++i)
 #define ll long long 
 #define vint vector<int>
 #define vlong vector<long long>
@@ -14,7 +13,7 @@
 #define __ << " " << 
 #define ar array
 #define sortit(x) sort(x.begin(),x.end())
-#define umap unordered_map
+
 using namespace std;
 template <typename T>
 void insert(vector<T> &vec, T x ){
@@ -28,12 +27,41 @@ bool ISPRIME(long long n){
 	} 
 	return true; 
 }
-
+bool ispalindrome(string x){
+    int i=0;
+    int j=x.size()-1;
+    while(i<j){
+        if(x[i] != x[j])
+            return false;
+        i++;j--;
+    }
+    return true;
+}
+int gcount(string s,char c){
+    int count = 0;
+    FOR(s.size()){
+        if(s[i] == c)
+            count++;
+    }
+    return count;
+}
 
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	freopen("input.txt","r",stdin);
-	
-}
+	int t;
+	cin>>t;
+	while(t--){
+        int a,b,c;
+        cin>>a>>b>>c;
+        cout<<"1";
+        FOR(a-1)cout<<"0";
+        cout<<" ";
+        FOR(b-c+1)cout<<"1";
+        FOR(c-1)cout<<"0";
+        cout<<endl;
 
+    }
+}
+       

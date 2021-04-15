@@ -34,6 +34,15 @@ int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	freopen("input.txt","r",stdin);
-	
+    int t;
+    cin>>t;
+    while(t--){
+        int n,m;
+        cin>>n>>m;
+        vin arr(n),gifts(m);
+        FOR(n) cin>>arr[i];
+        FOR(m) cin>>gifts[i]; 
+           
+    }    
 }
 

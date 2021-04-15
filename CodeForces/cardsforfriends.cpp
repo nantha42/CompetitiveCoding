@@ -33,7 +33,26 @@ bool ISPRIME(long long n){
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	freopen("input.txt","r",stdin);
-	
+//	freopen("input.txt","r",stdin);
+    int t;
+    cin>>t;
+    while(t--){
+        int w,h,n;
+        cin>>w>>h>>n;
+        int count = 1;
+        while(w%2==0)
+        {
+            w = w/2;
+            count*=2;
+        }
+        while(h%2==0)
+        {
+            h = h/2;
+            count*=2;
+        }
+        if(count>=n)
+            cout<<"yes"<<nl;
+        else cout<<"no"<<nl;
+    }
 }
 
