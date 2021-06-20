@@ -7,6 +7,8 @@
 #define vstr vector<string>
 #define vvin vector<vector<int>>
 #define PB push_back
+#define F first 
+#define S second 
 #define nl 
 
 using namespace std;
@@ -34,41 +36,11 @@ bool search(vint &app,int x,int k){
 	return false;
 }
 int n,m;
-bool findpath(vector<vector<char>> &arr,int x,int y,string &path){
-	if(arr[x][y] == 'B')
-		return true; 
-	arr[x][y] = 't';//taken
-	bool found = false;
-	if(x+1<n &&  (arr[x+1][y] ==  '.' || arr[x+1][y] ==  'B')) {
-		found = findpath(arr,x+1,y,path);
-		if(found)
-			path += 'D';
-	}
-	if(!found && x-1 >=0 && (arr[x-1][y] == '.' || arr[x-1][y] ==  'B')){
-		found = findpath(arr,x-1,y,path);
-		if(found)
-			path += 'U';
-	}
-	if(!found && y-1 >=0 && (arr[x][y-1] == '.' || arr[x][y-1] ==  'B')){
-		found = findpath(arr,x,y-1,path);
-		if(found)
-			path += 'L';
-		}
-	if(!found && y+1 < m && (arr[x][y+1] == '.' || arr[x][y-1] ==  'B')){
-		found = findpath(arr,x,y+1,path);
-		if(found)
-			path += 'R';
-		}
-	if(found)
-		return true;
-		
-	arr[x][y] = '.';//taken
-	return false;
 
-}
 int main(){
 	
 	// freopen("input.txt","r",stdin);
+	// freopen("output.txt","w",stdout);
 	cin>>n>>m;
 	vector<vector<char>> arr;
 	int values[n][m];
@@ -83,15 +55,69 @@ int main(){
 			cin>>rs[j];
 			if(rs[j] == 'A'){
 				ax = i;
-				ay = j;}
-		}
+				ay = j;
+				values[i][j] = 1;
+				}
+			else if(rs[j] == 'B'){
+				bx = i;
+				by = j;}
+	}
 		arr.PB(rs);
 	}
 	string path="";	
-	// findpath(arr,ax,ay,path);
-	// memset(values, sizeof values, 0);
 	queue<pair<int,int>> Q; 	
-	Q.push({ax,ay});
+	Q.push(pair<int,int>{ax,ay});
+	bool found = false;
+	do{
+		pair<int,int> p = Q.front();Q.pop();
+		int x= p.F,y =p.S;
+		if(x == bx && y == by){
+			 found = true;break;}
+
+		if(x+1<n &&  (arr[x+1][y] ==  '.' || arr[x+1][y] ==  'B') && values[x+1][y]==0 ) {
+			values[x+1][y ] = values[x][y]+1;
+			Q.push(pair<int,int>{x+1,y});
+		}
+		if( x-1 >=0 && (arr[x-1][y] == '.' || arr[x-1][y] ==  'B')&&values[x-1][y]== 0){
+			values[x-1][y ] = values[x][y]+1;
+			Q.push(pair<int,int>{x-1,y});
+		}
+		if(y-1 >=0 && (arr[x][y-1] == '.' || arr[x][y-1] ==  'B')&&values[x][y-1]== 0 ){
+			values[x][y-1 ] = values[x][y]+1;
+			Q.push(pair<int,int>{x,y-1});
+		}
+		if(y+1 < m && (arr[x][y+1] == '.' || arr[x][y+1] ==  'B') && values[x][y+1]== 0){
+			values[x][y+1] = values[x][y]+1;
+			Q.push(pair<int,int>{x,y+1});
+		}
+	}while(!Q.empty());
+	if(found){
+		int i = bx,j = by;
+		bool rstart = false;
+		do{
+			// cout<<i<<" "<<j<<endl;
+			// cout<<path<<endl;
+			if(i==ax && j == ay) 
+				break;
+			if(i-1 >= 0 && values[i-1][j] == values[i][j]-1 ){
+				i--;
+				path += 'D';
+			}
+			else if(i+1 < n && values[i+1][j] == values[i][j]-1){
+				i++;
+				path += 'U';
+			}
+			else if(j-1 >= 0 && values[i][j-1] == values[i][j]-1){
+				j--;
+				path += 'R';
+			}
+			else if(j+1 < m && values[i][j+1] == values[i][j]-1){
+				j++;
+				path += 'L';
+			}
+		}while(!rstart);
+	}
+	
 	if(path== "")
 		cout<<"NO"<<endl;
 	else{
