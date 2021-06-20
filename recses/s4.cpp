@@ -38,7 +38,7 @@ bool search(vint &app,int x,int k){
 
 int main(){
 	int t;
-	freopen("input.txt","r",stdin);
+	// freopen("input.txt","r",stdin);
 	int n,m;
 	cin>>n>>m;
 	vector<bool> used(n,false);
@@ -52,39 +52,35 @@ int main(){
 	}
 	// for(auto it:ticks)
 	// 	cout<<(it)[0]<<" "<<(it)[1]<<endl;
-	
-	FOR(m){
-		cin>>prics[i];
-		auto it = ticks.lower_bound({prics[i],0}); 
-		bool f = false;
-		// cout<<"P"<<endl;
-		// cout<<(*it)[0]<<endl;
-		// if(ticks.empty())
-		// 	cout<<"emp";
-		if((*it)[0]>=prics[i]){
-			
-			do{
-				--it;
-				if((*it)[0]<= prics[i]){
-					f = true;	
-					cout<<(*it)[0]<<endl;
-					ticks.erase((it));
-					break;
-				}
-			}while(it!=ticks.begin());
-
+	FOR(m)	{
+		int a;
+		cin>>a;
+		auto it = ticks.lower_bound({a,0});
+		if(ticks.empty()){
+			cout<<-1<<endl;
 		}else{
-		// for(auto it:ticks)
-		// 	cout<<(it)[0]<<" "<<(it)[1]<<endl;
-		// cout<<endl;
-			if(!ticks.empty()){
-				if(it == ticks.end())it--;
-				f = true;
+			if(it == ticks.begin()){
+				if((*it)[0]> a){
+					cout<<-1<<endl;
+				}else{
+					cout<<(*it)[0]<<endl;
+					ticks.erase(it);
+				}
+			}else if(it == ticks.end()){
+				it--;
 				cout<<(*it)[0]<<endl;
-				// cout<<"erasing"<<endl;
-				ticks.erase((it));
+				ticks.erase(it);
+			}else {
+					
+				if((*it)[0] > a){
+					do{
+						it--;
+						if((*it)[0]<=a){break;}
+					}while(it!=ticks.begin());
+				}
+				cout<<(*it)[0]<<endl;
+				ticks.erase(it);
 			}
 		}
-		if(!f)cout<<-1<<endl;
-	}		
+	}	
 }
