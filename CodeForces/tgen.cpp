@@ -25,20 +25,11 @@ int main(){
     
     ios::sync_with_stdio(0);
     cin.tie(0);
-    freopen("input.txt","r",stdin);
-    int t;cin>>t;
-    while(t--){
-       ll n,m;
-       cin>>n>>m;
-       //cout<<n<<" "<<m<<endl;
-       cout<<"-----"<<endl;
-       if(m<n){
-          cout<<0<<endl; 
-          continue;
-       }
-       ll p = m+1;
-       ll mb =(ll)log2(p);
-       mb = 1<<mb; 
-       
-    }
+    freopen("output1.txt","w",stdout);
+     vint arr={1,2,3,4};
+     do{
+         cout<<endl;
+         cout<<arr.size()<<" "<<arr.size()<<endl;
+         FOR(arr.size())cout<<arr[i]<<" ";
+     }while(next_permutation(arr.begin(),arr.end()));
 }

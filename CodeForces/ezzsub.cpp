@@ -28,17 +28,29 @@ int main(){
     freopen("input.txt","r",stdin);
     int t;cin>>t;
     while(t--){
-       ll n,m;
-       cin>>n>>m;
-       //cout<<n<<" "<<m<<endl;
-       cout<<"-----"<<endl;
-       if(m<n){
-          cout<<0<<endl; 
-          continue;
-       }
-       ll p = m+1;
-       ll mb =(ll)log2(p);
-       mb = 1<<mb; 
+        ll n;
+        cin>>n;
+        vint arr(n);
+        double s = 0;
+        FOR(n){cin>>arr[i];s+= arr[i];}
+        sortit(arr);
+         
+        double s1 = 0,s2=0;
+        double c1=1,c2=n-1;
+        s2 = s-arr[0];
+        s1 = arr[0];
+        double maxv = (s1)/c1 +s2/c2; 
+        for(int i=1;i<n;i++){
+            s1+= arr[i];
+            s2-= arr[i];
+            c1++;
+            c2--;
+            maxv = max(maxv,s1/c1+s2/c2);
+        }
+        cout<<setprecision(9)<<maxv<<endl;
+        
+
+        
        
     }
 }

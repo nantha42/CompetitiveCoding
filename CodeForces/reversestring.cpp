@@ -25,13 +25,13 @@ int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
     int t;cin>>t;
     while(t--){
         string s,x;
         cin>>s>>x;
         bool f = false;
         for(int i=0;i<s.size();i++){
-            
             if(s[i] == x[0]){
                 int j=1;
                 queue<int> q;
@@ -41,36 +41,30 @@ int main(){
                     if(i+j-2 >=0 && s[i+j-2] == s[i+j])
                         q.push(j);
                 }
-
-                j--;
-                int k=1;
-                for(;k+j<x.size();k++){
-                    if( i+j-k<0 || s[i+j-k]!=x[k+j])
-                        break;
+                int r = x.size()-j;
+                //cout<<r<<" "<<i+j-r<<endl;
+                if(i+j-r-1 >=0){
+                    string p = x.substr(j,r);
+                    reverse(p.begin(),p.end());
+                 
+                    if(s.substr(i+j-r-1,r) == p)
+                        f = true;
                 }
-                
-                if(k+j==x.size()){
-                   f = true; 
-                }
-
-
-
-                while(!q.empty()){
-                    j = q.front();
-                    q.pop();
-                    j--;
-                    int k=1;
-                    for(;k+j<x.size();k++){
-                        if( i+j-k<0 || s[i+j-k]!=x[k+j])
-                            break;
-                    }
-                    
-                    if(k+j==x.size()){
-                 //       cout<<k<<" "<<j<<endl;
-                       f = true; 
-                    }
-                }
-             
+                if(!f)
+                     while(!q.empty()){
+                         j =q.front();
+                         q.pop();
+                     r = x.size()-j;
+                     //cout<<r<<" "<<i+j-r<<endl;
+                      if(i+j-r-1 >=0){
+                         string p = x.substr(j,r);
+                         reverse(p.begin(),p.end());
+                       //   cout<<s.substr(i+j-r-1,r)<<" "<<p<<endl;
+                         if(s.substr(i+j-r-1,r) == p)
+                             f = true;
+                      }
+                     }
+            
             }
             if(f)
                 break;
