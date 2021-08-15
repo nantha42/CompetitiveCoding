@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 #define FOR(n) for(int i=0;i<n;++i)
 #define FOR1(n) for(int i=1;i<n;++i)
-#define FR(i,n) for(int i=1;i<n;++i)
 #define rng(a,b) for(int i=a;i<b;++i)
 #define ll long long 
 #define vint vector<int>
@@ -34,13 +33,39 @@ bool ISPRIME(long long n){
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    #else
-    #endif
+    freopen("input.txt","r",stdin);
     int t;
     cin>>t;
     while(t--){
+        string s;
+        cin>>s;
+        int i=0;
+        int j=0;
+        bool right=true;
+        for(int k=0;k<s.size();k++)
+            if(s[k]=='a')
+            {
+               i =k;
+              j= k;
+             break;}
+        if(s[i]!='a')
+            right=false;
+        char u = 'a';
+        int n = s.size();
+        while(i-j<n-1){
+            u++;
+            if(i+1<n && s[i+1] == u)
+                i++;
+            else if(j-1>=0 && s[j-1] == u)
+                j--;
+            else{
+                right=false;
+                break;
+            }
+        } 
+        if(i-j<n-1 || !right)
+            cout<<"NO"<<endl;
+        else cout<<"YES"<<endl;
 
     }
     
