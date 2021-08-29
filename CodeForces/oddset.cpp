@@ -63,8 +63,19 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
-    }
-    
+        int n;
+        cin>>n;
+        int e=0,o=0;
+        FOR(2*n){
+           int x;
+          cin>>x;
+           if(x%2)o++;
+           else e++; 
+        }
+        if(o==e)
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO"<<endl;
+  }
 }
 

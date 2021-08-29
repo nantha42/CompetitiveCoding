@@ -51,8 +51,6 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
-
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -63,8 +61,22 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+        string s;
+        cin>>s;
+        map<int,int> mp;
+        int count=0;
+        int ones=0;
+        FOR(s.size()){
+            if(mp[s[i]]==1){
+               count+=1; 
+               ones--;
+            }
+               mp[s[i]]++;
+            if(mp[s[i]]==1)
+                ones++;
+        }
+        if(ones>1)
+            count+=ones/2;
+        cout<<count<<endl;
     }
-    
 }
-

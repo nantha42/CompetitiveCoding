@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #define FOR(n) for(int i=0;i<n;++i)
 #define FOR1(n) for(int i=1;i<n;++i)
-#define FR(i,a,b) for(int i=a;i<b;++i)
+#define FR(i,n) for(int i=1;i<n;++i)
 #define rng(a,b) for(int i=a;i<b;++i)
 #define ll long long 
 #define vint vector<int>
@@ -28,11 +28,6 @@ bool ISPRIME(long long n){
             return false;
     } 
     return true; 
-}
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
 }
 struct DSU{
     int n;
@@ -63,7 +58,26 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+        string s;
+        int k;
+        cin>>s>>k; 
+        int n=s.size();
+        bool f[10];
+        memset(f,0,sizeof f);
+        int g=0;
+        FOR(n){
+            if(!f[s[i]-'0']){
+                g++;
+                f[s[i]-'0']=true;
+            }
+        }
+        if(g==k)
+            cout<<s<<endl;
+        else{
+            //x>y
+           //xyxyxy  
+           //xyxyxx
+       }
     }
     
 }

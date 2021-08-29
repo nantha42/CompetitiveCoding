@@ -51,8 +51,6 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
-
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -63,8 +61,18 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+        int n;
+        cin>>n;
+        vlong arr(n);
+        ll s=0;
+        FOR(n){
+            cin>>arr[i];
+            s+=arr[i];
+        }
+        ll avg= s/n;
+        ll r =s-avg*n;
+        ll ans=0;
+        ans += (n-r)*(r) ;
+        cout<<ans<<endl;
     }
-    
 }
-

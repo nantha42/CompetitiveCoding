@@ -51,8 +51,36 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
+// 3 5
+// 8 0 
+// 0 0 
+// 16 -16
+// 8 -8  
+// 4 -4
+// -1 1
+int work(vint &arr,int i,int l=0){
+    int c=0;
+//    cout<<i<<" ";
+      FOR(arr.size())
+          cout<<arr[i]<<" ";
+      cout<<endl;
+ 
+    if(i-2>=0 and arr[i-1]==arr[i-2] and arr[i]!=arr[i-1] and l!=2)
+    {
+        c=1;
+        swap(arr[i],arr[i-1]);
+        c+=work(arr,i-1,1);
+        c+=work(arr,i);
 
-
+    }
+    else if(i+2<arr.size() and arr[i+1]==arr[i+2] and arr[i]!=arr[i+1] and l!=1){
+        c=1;
+       swap(arr[i],arr[i+1]); 
+       c+=work(arr,i+1,2);
+       c+=work(arr,i);
+    }
+    return c;
+}
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -63,7 +91,34 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+      int n;
+      cin>>n;  
+      vint arr(n);
+      int o=0,e=0;
+      FOR(n){
+          cin>>arr[i];
+          if(arr[i]%2){
+              arr[i]=1;
+              o+=1;
+          }
+          else{ 
+              arr[i] = 0;
+              e+=1;
+          }
+      }
+      if(o!=n/2 and o!=n/2+1){
+          cout<<-1<<endl;
+          continue;
+      }
+      if(n==1){cout<<0<<endl; continue;}
+      int ans=0;
+      FOR(n){
+        ans+=work(arr,i); 
+      } 
+      FOR(n)
+          cout<<arr[i]<<" ";
+      cout<<endl;
+      cout<<ans<<endl; 
     }
     
 }

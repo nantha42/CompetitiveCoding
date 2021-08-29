@@ -29,11 +29,6 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
-}
 struct DSU{
     int n;
     vint p;
@@ -57,13 +52,43 @@ int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
+   freopen("input.txt", "r", stdin);
     #else
     #endif
     int t;
     cin>>t;
     while(t--){
-
+        int n;
+        cin>>n;
+        vint arr(n,0);
+        FOR(n){
+            cin>>arr[i];
+        }
+        vint brr(arr.begin(),arr.end());
+        sortit(brr);
+        unordered_map<int,int> mp;
+        FOR(n){
+            mp[brr[i]] = i; 
+        }
+        int mx=0;
+        FOR(n)cout<<arr[i]<<" ";
+        cout<<endl;
+        FOR(n)cout<<brr[i]<<" ";
+        cout<<endl;
+ 
+        FOR(n){
+//            cout<<mp[arr[i]]<<" ";
+            if(i%2==0 and mp[arr[i]] != i and abs(mp[arr[i]]-i)>mx)
+                    mx=mp[arr[i]]-i;
+            else if(i%2==1 and mp[arr[i]]!= i and abs(mp[arr[i]]-i+1) > mx){
+                    mx = mp[arr[i]]-i+1;
+            }
+            cout<<mx<<" ";
+        }
+        cout<<endl;
+        if(mx!=0) 
+            cout<<mx<<endl;
+        else cout<<0<<endl;
     }
     
 }

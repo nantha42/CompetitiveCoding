@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #define FOR(n) for(int i=0;i<n;++i)
 #define FOR1(n) for(int i=1;i<n;++i)
-#define FR(i,n) for(int i=1;i<n;++i)
+#define FR(i,n) for(int i=0;i<n;++i)
 #define rng(a,b) for(int i=a;i<b;++i)
 #define ll long long 
 #define vint vector<int>
@@ -29,6 +29,15 @@ bool ISPRIME(long long n){
 	} 
 	return true; 
 }
+//template<class T>
+//void swap(T &a,T &b){
+//    T c;
+//    c = a;
+//    a = b;
+//    b = c;
+//}
+
+
 /*
  * 3 2 1
  * r r r 
@@ -58,21 +67,29 @@ int main(){
     while(t--){
         int n;
         cin>>n;
-        vector<array<int,2>> arr(n);
+        vint arr(n);
+        vector<bool> D(n,false);//false - right
+        map<int,array<int,2>> mp1,mp2;
         FOR(n){
-            cin>>arr[i][0];
-            arr[i][1] = i;
+            cin>>arr[i];
+            if(i%2)
+                mp1[arr[i]][0]++;
+            else
+                mp1[arr[i]][1]++;
         }
         sortit(arr);
-        bool f = true;
         FR(i,n){
+            if(i%2)
+                mp2[arr[i]][0]++;
+            else
+                mp2[arr[i]][1]++;
 
-            if((arr[i][1]-i)%2!=0){
-                if(i+1<n && (arr[i+1][1]-i+1)%2!=0 && arr[i][0]==arr[i+1][0]) 
-                    i+=1;
-                else
+        }
+        bool f= true;
+        for(auto x:mp1){
+            int ai = x.first;
+            if(mp1[ai][0] != mp2[ai][0] || mp1[ai][1]!=mp2[ai][1])
                 f=false;
-            }
         }
         if(f)
             cout<<"YES"<<endl;

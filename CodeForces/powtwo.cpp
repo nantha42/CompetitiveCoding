@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #define FOR(n) for(int i=0;i<n;++i)
 #define FOR1(n) for(int i=1;i<n;++i)
-#define FR(i,a,b) for(int i=a;i<b;++i)
+#define FR(i,n) for(int i=1;i<n;++i)
 #define rng(a,b) for(int i=a;i<b;++i)
 #define ll long long 
 #define vint vector<int>
@@ -28,11 +28,6 @@ bool ISPRIME(long long n){
             return false;
     } 
     return true; 
-}
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
 }
 struct DSU{
     int n;
@@ -62,9 +57,50 @@ int main(){
     #endif
     int t;
     cin>>t;
-    while(t--){
-
+    // 512
+    // 1024
+    // 1724
+    // 125
+    // 612
+    vstr ts={"1"};
+    ll s=2; 
+    FOR(61){
+        ts.PB(std::to_string(s));
+        s*=2;
+        //cout<<ts[i]<<endl;
     }
+    while(t--){
+        int k;
+        cin>>k;
+        int m=1e9;
+        string ch;
+        for(int i=0;i<ts.size();i++){
+            int ai=0,di=0,mi;
+            string s = ts[i];
+            string kstr = std::to_string(k);
+            int ind=0;
+            for(int j=0;j<kstr.size();j++){
+               if(ind>=s.size()){
+                   di+= kstr.size()-j;
+                   break;
+               }
+               if(kstr[j]==s[ind]){
+                    ind++;
+               }else{
+                    di++;
+               }
+            }
+            ai = (s.size()-ind);
+
+            mi=ai+di; 
+            if(mi<m){
+                m = mi;
+                ch = s;
+                
+            }
+        } 
+        cout<<m<<endl;
+   }
     
 }
 

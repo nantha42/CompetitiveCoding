@@ -51,8 +51,6 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
-
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -63,8 +61,16 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
-    }
-    
+        ll n,x,t;
+        cin>>n>>x>>t;
+        if(x<=t){
+            ll g=t/x; 
+            ll s = max(0LL,(n-g)*g) ;
+            g = min(n,g)-1;
+            ll s1 = g*(g+1)/2;
+            cout<<s+s1<<endl;
+        }else{
+            cout<<0<<endl;
+        }
+   }
 }
-

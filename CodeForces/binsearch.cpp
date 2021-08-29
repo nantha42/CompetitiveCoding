@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
-#define FOR(n) for(int i=0;i<n;++i)
+#define FOR(n) for(int i=0;i<n;++i) 
 #define FOR1(n) for(int i=1;i<n;++i)
-#define FR(i,a,b) for(int i=a;i<b;++i)
+#define FR(i,n) for(int i=1;i<n;++i)
 #define rng(a,b) for(int i=a;i<b;++i)
 #define ll long long 
 #define vint vector<int>
@@ -29,11 +29,6 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
-}
 struct DSU{
     int n;
     vint p;
@@ -51,7 +46,18 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
+int search(vint arr,int x){
+    int l=0,r=arr.size()-1;
+    while(l<=r){
+        int mid = (l+r)/2;
+        if(arr[mid] < x)
+            l = mid+1;
+        else if(arr[mid] > x)
+            r = mid-1;
+        else return mid;
+    }
+    return -1;
+}
 
 int main(){
     ios::sync_with_stdio(0);
@@ -62,9 +68,14 @@ int main(){
     #endif
     int t;
     cin>>t;
-    while(t--){
-
+    vint arr(t,0);
+    FOR(t)cin>>arr[i]; 
+    int q;
+    cin>>q;
+    FOR(q){
+        int x;
+        cin>>x;
+        cout<<search(arr,x)<<endl;;
     }
-    
 }
 

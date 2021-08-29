@@ -63,8 +63,22 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
-    }
+        map<int,int> mp;
+        int n;
+        cin>>n;
+        int s=1;
+        int count=1;
+        int su=s;
+        while(su<n){
+            if(su+s+2<=n)
+                s+=2;
+            else
+                s+=1;
+            su+=s;
+            count++;
+        }
+        cout<<count<<endl;
+   }
     
 }
 

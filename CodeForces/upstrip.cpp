@@ -29,11 +29,6 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
-}
 struct DSU{
     int n;
     vint p;
@@ -51,20 +46,48 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
-
+void swap(int &a,int &b){
+    int t=a;
+    a=b;
+    b=t;
+}
+struct BIT{
+    int n;
+    vint bit;
+     
+}
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
+   freopen("input.txt", "r", stdin);
     #else
     #endif
-    int t;
-    cin>>t;
-    while(t--){
-
-    }
-    
+    ll n,m;
+    cin>>n>>m;
+    vlong arr(n+1);
+    arr[1]=1;
+//    for(int i=2;i<=n;i++){
+//       arr[i]=(arr[i-1]+1)%m; 
+//       arr[i]= (arr[i] + (arr[i/(i-1)]+1)%m)%m;
+//    }
+    ll tot=1;
+    for(int i=2;i<=n;i++){
+        ll s = tot+(i-i/2);
+//        cout<<i<<" : ";
+        for(int j=2;j<=i/2;j++){
+            s = (s + arr[i/j])%m; 
+//            cout<<i/j<<" ";
+        }
+//        cout<<endl;
+        arr[i] =s;
+        tot = (tot+arr[i])%m;
+    } 
+//    FR(i,1,n+1)cout<<arr[i]<<" ";
+//
+//    cout<<endl;
+//    FR(i,1,n)cout<<arr[i+1]-arr[i]<<" ";
+//    cout<<endl;
+    cout<<arr[n]<<endl;
 }
 

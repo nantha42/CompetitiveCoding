@@ -51,7 +51,8 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
+bool compare(int a,int b){
+}
 
 int main(){
     ios::sync_with_stdio(0);
@@ -63,7 +64,31 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+        int n;
+        cin>>n;
+        vint arr(n);
+        vbool used(n,false);
+          int o=0,e=0;
+          FOR(n){
+              cin>>arr[i];
+              if(arr[i]%2){
+                  arr[i]=1;
+                  o+=1;
+              }
+              else{ 
+                  arr[i] = 0;
+                  e+=1;
+              }
+          }
+         if(o!=n/2 and o!=n/2+1){
+            cout<<-1<<endl;
+            continue;
+          }
+          if(n==1){cout<<0<<endl; continue;}
+          if(o>e){
+            
+          }
+ 
     }
     
 }

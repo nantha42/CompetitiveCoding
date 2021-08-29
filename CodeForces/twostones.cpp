@@ -63,8 +63,26 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+        int n;
+        cin>>n;
+        vint arr(n);
+        int mini=1e9,maxi=0;
+        int mid = -1,mxd=-1;
+        FOR(n){
+            cin>>arr[i];
+            if(mini > arr[i]){
+                mini = arr[i]; 
+                mid = i+1;}
+            if(maxi< arr[i]){
+                maxi = arr[i];
+                mxd = i+1;
+            }
+        }
+        int l=min(mid,mxd);
+        int r = max(mid,mxd);
+        int x = min(max(l,r), max(n-l+1,n-r+1) ); 
+        cout<<min(x,l+n-r+1)<<endl;
+          
     }
-    
 }
 

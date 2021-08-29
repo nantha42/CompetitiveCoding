@@ -63,8 +63,23 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
-    }
+        int k;
+        int s=0;
+        cin>>k;
+        vint arr(k);
+        FOR(k){
+            cin>>arr[i];
+            s+=arr[i];
+        }
+        if(s==k)
+            cout<<0<<endl;
+        else if(s>k){
+            cout<<s-k<<endl; 
+        }else{
+            cout<<1<<endl;
+        }
+         
+   }
     
 }
 

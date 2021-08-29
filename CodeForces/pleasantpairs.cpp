@@ -29,11 +29,6 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
-}
 struct DSU{
     int n;
     vint p;
@@ -63,7 +58,25 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-
+        int n;
+        cin>>n;
+//        vector<array<int,2>> arr(n,{0,0});
+//        1 3 4 5
+//        1 2 3 4
+//        2 3 4 5
+//        2 4 6 8 
+//        2 4  
+//        3 8
+        vint arr(n,0);
+        map<int,int> mp;
+        FOR(n){
+            cin>>arr[i];
+            mp[arr[i]] = i+1;
+        }
+        FOR(n){
+            int x=arr[i];
+            for(int j=1;j 
+        }
     }
     
 }

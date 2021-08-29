@@ -29,11 +29,6 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
-    a=b;
-    b=t;
-}
 struct DSU{
     int n;
     vint p;
@@ -51,8 +46,16 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
-
+void swap(int &a,int &b){
+    int t=a;
+    a=b;
+    b=t;
+}
+struct BIT{
+    int n;
+    vint bit;
+     
+};
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -60,11 +63,23 @@ int main(){
     freopen("input.txt", "r", stdin);
     #else
     #endif
-    int t;
+    ll t;
     cin>>t;
     while(t--){
-
-    }
-    
+        ll l,r;
+        cin>>l>>r;
+        ll d=r-l;
+        if(l==r){
+            cout<<0<<endl;
+        }
+        else if(l>d){
+            cout<<d<<endl;
+        }else{
+            if(r%2==0)
+                cout<<(r-1)%((r/2))<<endl; 
+            else
+                cout<<r%(r/2+1)<<endl;
+        }
+   }
 }
 

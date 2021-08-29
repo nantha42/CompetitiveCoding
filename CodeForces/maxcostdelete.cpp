@@ -51,8 +51,6 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-
-
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -63,8 +61,40 @@ int main(){
     int t;
     cin>>t;
     while(t--){
+        int n,a,b;
+        string s;
+        cin>>n>>a>>b;
+        cin>>s;
+        if(b<0){
+            vint arr{1};
+            int x=0;
+            for(int i=1;i<n;i++){
+                if(s[i-1]==s[i])
+                    arr[arr.size()-1]++;
+                else{
+//                    cout<<arr[arr.size()-1]<<" ";
+                    arr.PB(1);
+                }
+            }
+//            cout<<arr[arr.size()-1]<<" ";
+//            cout<<endl;
+            int ods=0,evs=0,su1=0,su2=0;
+            for(int i=0;i<arr.size();i+=1){
+                if(i%2==0)
+                    ods += (arr[i]*a+b);
+                else su1+=arr[i];
 
+                if(i%2==1)
+                    evs+= (arr[i]*a+b);
+                else su2+=arr[i];
+            }
+ //           cout<<su1<<" "<<su2<<endl;
+            ods += (su1*a+b);
+            evs += (su2*a+b);
+//            cout<<ods<<" "<<evs<<endl;
+            cout<<max(ods,evs)<<endl;
+        }else{
+            cout<<n*a+n*b<<endl;
+        }
     }
-    
 }
-
