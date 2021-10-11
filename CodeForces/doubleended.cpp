@@ -29,8 +29,9 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
+template<class T>
+void swap(T &a,T &b){
+    T t=a;
     a=b;
     b=t;
 }
@@ -51,13 +52,7 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
+
 
 int main(){
     ios::sync_with_stdio(0);
@@ -69,23 +64,38 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
-        
+        string s,t;
+        cin>>s>>t;
+        if(s.size()>t.size())
+            swap(s,t);
+        int ans=1e9;
+        FOR(t.size()){
+            int q=i;
+            int d=0;
+            FR(j,0,s.size()){
+                if(t[q] == s[j]){
+ //                   cout<<t[q];
+                    q++;
+                }
+                else{
+//                    cout<<q<<" "<<j<<endl;
+                    d = max(d,q-i);
+                    int x = (t.size() - d) + (s.size()-d) ;
+                    ans = min(ans,x);
+                    if(q>i)
+                        j--;
+                    q=i;
+                    continue;
+                }
+            }
+            d = max(d,q-i);
+            int x = (t.size() - d) + (s.size()-d) ;
+            ans = min(ans,x);
+            q=i;
+ 
+        }
+        if(ans==1e9)cout<<0<<endl;
+        else cout<<ans<<endl;
     }
-    
 }
 

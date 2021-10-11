@@ -9,8 +9,9 @@
 #define vstr vector<string>
 #define vvin vector<vector<int>>
 #define PB push_back
-#define nl "\n"
+#define nl cout<<endl;
 #define F first
+#define sho(x) cout<<x<<" ";
 #define S second
 #define __ << " " << 
 #define ar array
@@ -51,14 +52,12 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
 
+bool dense(float x,float y){
+    if(ceil(max(x,y)/min(x,y))<=2)
+        return true;
+    return false;
+}
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -69,23 +68,21 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
-        
+        int n;
+        cin>>n;
+        vint arr(n);
+        FOR(n)cin>>arr[i];
+        vint ans;
+        int c=0;
+        FR(i,1,n){
+            int a = min(arr[i-1],arr[i]); 
+            int b = max(arr[i-1],arr[i]);
+            while(a*2 < b)
+            {
+                a*=2;
+                c++;
+            }
+        }
+        cout<<c<<endl;
     }
-    
 }
-

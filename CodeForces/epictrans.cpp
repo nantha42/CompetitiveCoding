@@ -9,12 +9,13 @@
 #define vstr vector<string>
 #define vvin vector<vector<int>>
 #define PB push_back
-#define nl "\n"
+#define nl cout<<endl 
 #define F first
 #define S second
 #define __ << " " << 
 #define ar array
 #define sortit(x) sort(x.begin(),x.end())
+#define rsotrit(x) sort(x.begin(),x.end(),std::greater<>())
 #define umap unordered_map
 using namespace std;
 template <typename T>
@@ -29,8 +30,9 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
+template<class T>
+void swap(T &a,T &b){
+    T t=a;
     a=b;
     b=t;
 }
@@ -51,13 +53,8 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
+//
+//map
 
 int main(){
     ios::sync_with_stdio(0);
@@ -69,21 +66,35 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
+        int n;
+        cin>>n;
+        map<int,int> mp;
+        priority_queue<pair<int,int>> q;
+        FOR(n){
+            int x;
+            cin>>x;
+            mp[x]++;
+        }
+        for(auto [x,y]:mp){
+            q.push({y,x});
+        }
+        int s = n;
+        while(q.size()>=2){
+            auto [c1,x] = q.top();
+            q.pop();
+
+            auto [c2,y] = q.top();
+            q.pop();
+            c1--;
+            c2--;
+            s-=2;
+            if(c1)
+                q.push({c1,x});
+            
+            if(c2)
+                q.push({c2,y});
+        }
+        cout<<s<<endl;
         
     }
     

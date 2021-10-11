@@ -9,7 +9,7 @@
 #define vstr vector<string>
 #define vvin vector<vector<int>>
 #define PB push_back
-#define nl "\n"
+#define nl cout<<endl 
 #define F first
 #define S second
 #define __ << " " << 
@@ -29,8 +29,9 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
+template<class T>
+void swap(T &a,T &b){
+    T t=a;
     a=b;
     b=t;
 }
@@ -51,13 +52,7 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
+
 
 int main(){
     ios::sync_with_stdio(0);
@@ -69,22 +64,17 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
-        
+        string s;
+        cin>>s;
+        int a=0,b=0,c=0;
+        FOR(s.size()){
+            if(s[i] == 'A')a++;
+            if(s[i] == 'B')b++;
+            if(s[i] == 'C')c++;
+        }
+        if(b==c+a)
+            cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
     }
     
 }

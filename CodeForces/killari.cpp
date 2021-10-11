@@ -9,12 +9,13 @@
 #define vstr vector<string>
 #define vvin vector<vector<int>>
 #define PB push_back
-#define nl "\n"
+#define nl cout<<endl 
 #define F first
 #define S second
 #define __ << " " << 
 #define ar array
 #define sortit(x) sort(x.begin(),x.end())
+#define rsotrit(x) sort(x.begin(),x.end(),std::greater<>())
 #define umap unordered_map
 using namespace std;
 template <typename T>
@@ -29,8 +30,9 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
+template<class T>
+void swap(T &a,T &b){
+    T t=a;
     a=b;
     b=t;
 }
@@ -51,14 +53,37 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
+//
+//map
+class item{
+    public:
+        int imp,c;
+        item(int c,int imp){
+            this->imp=imp;
+            this->c = c;
+        }
+};
 
+bool operator < (const item& item1,const item& item2){
+    if(item1.imp < item2.imp)
+       return true;  
+    else if(item1.imp==item2.imp)
+       if(item1.c>item2.c) 
+           return true;
+    return false;
+
+}
+vector<int> solve(vector<int> cost,vector<int>  importance,vector<int> query){
+    priority_queue<item> p;  
+    for(int i=0;i<cost.size();i++){
+        item ite(cost[i],importance[i]);
+        p.push(ite);
+    }
+    FOR(auto x:q){
+        
+    }
+    return vector<int>();
+}
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -66,26 +91,28 @@ int main(){
     freopen("input.txt", "r", stdin);
     #else
     #endif
-    int t;
-    cin>>t;
-    while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
-        
+    int n,m;
+    cin>>n;
+    vint cost,imp,query;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        cost.push_back(x);
     }
-    
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        int x;
+        cin>>x;
+        imp.push_back(x);
+    }
+    cin>>m;
+    for(int i=0;i<m;i++)
+    {
+        int x;
+        cin>>x;
+        query.push_back(x);
+    }
+    solve(cost,imp,query);
 }
 

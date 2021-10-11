@@ -51,13 +51,7 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
+
 
 int main(){
     ios::sync_with_stdio(0);
@@ -69,23 +63,35 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
-        
+        int n;
+        cin>>n;
+        vint arr(n);
+        vint rm(3,0);
+        FOR(n){
+            cin>>arr[i];
+            rm[arr[i]%3]++;
+        }
+        int x=n/3;
+        int count=0;
+        FOR(3){
+            if(rm[i]>x){
+                FR(j,0,3){
+                    if(i!=j){
+                        if(rm[j]<x){
+                            int d= min(x-rm[j],rm[i]-x);
+                            if(j<i){
+                                int g = 0+i;
+                                int h = 3+j;
+                                count+= (d)*(abs(h-g));
+                            }else{
+                            count+= (d)*(abs(j-i));
+                            }
+                            rm[i]-=d;
+                        }
+                    }
+                }
+            }
+        }
+        cout<<count<<endl;
     }
-    
 }
-

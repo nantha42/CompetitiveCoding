@@ -9,7 +9,7 @@
 #define vstr vector<string>
 #define vvin vector<vector<int>>
 #define PB push_back
-#define nl "\n"
+#define nl cout<<endl 
 #define F first
 #define S second
 #define __ << " " << 
@@ -29,8 +29,9 @@ bool ISPRIME(long long n){
     } 
     return true; 
 }
-void swap(int &a,int &b){
-    int t=a;
+template<class T>
+void swap(T &a,T &b){
+    T t=a;
     a=b;
     b=t;
 }
@@ -51,13 +52,7 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-// 3 5
-// 8 0 
-// 0 0 
-// 16 -16
-// 8 -8  
-// 4 -4
-// -1 1
+
 
 int main(){
     ios::sync_with_stdio(0);
@@ -69,22 +64,29 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-       ll c,d;
-       cin>>c>>d; 
-       if(c==d){
-           if(c!=0)
-               cout<<1<<endl;
-           else cout<<0<<endl;
-       }
-       
-       else{
-          ll diff= abs(c-d);
-          if(diff%2==0)
-              cout<<2<<endl;
-          else 
-              cout<<-1<<endl;
-       }
-        
+        int n;
+        cin>>n;
+        map<int,int> mp;
+        FOR(n){
+            int x;
+            cin>>x;mp[x]=i;
+        }
+        FOR(n){
+            int x;
+            cin>>x;mp[x]=i;
+        }
+        int l=1e9;
+        int ans = 1e9;
+        for(int i=2*n;i>=1;i--){
+            if(i%2==0){
+                l = min(l,mp[i]);
+            }
+            else{
+               ans = min(ans,l+mp[i]); 
+            }
+        }
+        cout<<ans<<endl;
+ 
     }
     
 }

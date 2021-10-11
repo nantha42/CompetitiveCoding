@@ -51,9 +51,6 @@ struct DSU{
         if(a!=b) p[b] = a;
     }
 };
-bool compare(int a,int b){
-}
-
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -67,28 +64,51 @@ int main(){
         int n;
         cin>>n;
         vint arr(n);
-        vbool used(n,false);
-          int o=0,e=0;
-          FOR(n){
-              cin>>arr[i];
-              if(arr[i]%2){
-                  arr[i]=1;
-                  o+=1;
-              }
-              else{ 
-                  arr[i] = 0;
-                  e+=1;
-              }
-          }
-         if(o!=n/2 and o!=n/2+1){
+        vint arr1(n);
+        int o=0,e=0;
+        FOR(n){
+            cin>>arr[i];
+            arr[i]=arr[i]%2;
+            arr1[i] = arr[i];
+            if(arr[i])o++;else e++;
+        }
+        if(abs(o-e)>1){
             cout<<-1<<endl;
             continue;
-          }
-          if(n==1){cout<<0<<endl; continue;}
-          if(o>e){
-            
-          }
- 
+        }
+       //odd 
+       int j1=0,j2=0;
+       int c1=0,c2=0;
+       FOR(n){
+          j1 = max(i,j1);
+         if(arr[i]%2 == i%2){
+           while(j1<n and arr[j1]%2==i%2)
+               j1++;
+           swap(arr[i],arr[j1]);
+           c1+=(j1-i);
+         }  
+
+          j2 = max(i,j2);
+         if(arr1[i]%2 != i%2){
+           while(j2<n and arr1[j2]%2!=i%2)
+               j2++;
+           swap(arr1[i],arr1[j2]);
+           c2+=(j2-i);
+         }  
+
+       } 
+//       j=0;
+//       FOR(n){
+//          j=max(i,j); 
+//          if(arr1[i]%2!=i%2){
+//            while(j<n and arr1[j]%2!=i%2)
+//                j++;
+//            swap(arr1[i],arr1[j]);
+//            c2+=(j-i);
+//          }
+//       }
+//       cout<<c1<<" "<<c2<<endl;
+       cout<<min(c1,c2)<<endl; 
     }
     
 }
