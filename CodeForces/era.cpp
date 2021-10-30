@@ -65,7 +65,22 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        
+        int n;
+        cin>>n;
+        vint arr(n);
+        FOR(n)cin>>arr[i];
+        int j=0;
+        int count = 0;
+        FOR(n){
+            if(j < arr[i]){
+                count+= (arr[i]-j)-1;
+                j += arr[i]-j; 
+            }
+            else{
+                j++;
+            }
+        }  
+        cout<<count<<endl;
     }
     
 }

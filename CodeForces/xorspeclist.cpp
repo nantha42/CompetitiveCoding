@@ -65,8 +65,44 @@ int main(){
     int t;
     cin>>t;
     while(t--){
+        int n;
+        cin>>n;
+        vint arr(n);
+        map<int,int> mp; 
+
+        bool b=false;
         
+        FOR(n){
+            cin>>arr[i];
+            mp[arr[i]]++;
+            if(mp[arr[i]]>1)b=1;
+              
+        }
+
+        if(n%2==0)
+           cout<<"YES"<<endl; 
+        else{
+            if(b==1)
+                cout<<"YES"<<endl;
+            else{
+                int mxi = 0;
+                FOR(n){
+                  if(arr[i] > mxi){
+                    mxi = arr[i];  
+                  }
+                  if(mxi > arr[i]){
+                    b = 1;
+                    break;
+                  }
+                }
+                if(!b)
+                    cout<<"NO"<<endl;
+                else
+                    cout<<"YES"<<endl;
+            
+        }
     }
     
+}
 }
 
