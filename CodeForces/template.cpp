@@ -54,6 +54,21 @@ struct DSU{
     }
 };
 
+ll fact(int n)
+{
+    ll x=1;
+    for(int i=2;i<=n;i++)
+    {
+        x*=i;
+    }
+    return x;
+}
+
+ll combi(int n,int r)
+{
+    return fact(s)/(fact(s-r)*fact(r))
+}
+
 
 int main(){
     ios::sync_with_stdio(0);
